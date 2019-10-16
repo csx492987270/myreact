@@ -1,28 +1,40 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
-
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
-    );
-  }
+import { HashRouter as Router, Route, Switch, Redirect } from 'react-router-dom'
+import routes from './routes';
+const App = () => {
+  const [logo] = useState(logo);
+  return (
+    <div className="App">
+      <Router>
+        <Switch>
+            {
+              routes.map((route, index) => {
+                const {
+                  path,
+                  exact,
+                  layout = 'default',
+                  component: Component
+                } = route;
+                return (
+                  <Route
+                    key={index}
+                    path={path}
+                    exact={exact}
+                    render={props => {
+                      return (
+                        <Component {...props} />
+                      )
+                    }}
+                  />
+                );
+              })
+            }
+          }
+        </Switch>
+      </Router>
+    </div>
+  );
 }
 
 export default App;
