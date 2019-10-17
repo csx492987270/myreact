@@ -92,9 +92,9 @@ const Ajax = function (options = {}) {
 
     axios(config)
       .then(res => {
-        const data = res ? res.result : null;
+        const data = res ? res.data : null;
         hideLoading();
-        if (res.code === 200) {
+        if (data.code === 200) {
           resolve(data);
         } else {
 
