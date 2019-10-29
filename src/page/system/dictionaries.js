@@ -8,7 +8,7 @@ import {
   Input,
   Radio
 } from 'antd';
-import './system.css';
+import './system.less';
 const Dictionaries =() => {
   let [visible, setVisible] = useState(false);
   let [titles, setTitles] = useState();
